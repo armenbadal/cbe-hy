@@ -11,4 +11,5 @@
 6. [Oberon-0 ծրագրավորման լեզուն](chapter-06.md)
 9. [RISC ճարտարապետպությունը որպես նպատակ](chapter-09.md)
 
+![Շապիկ](compiler-construction-niklaus-wirth.pngՃ
 
