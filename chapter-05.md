@@ -6,7 +6,7 @@
 
 ## Կանոններ տիպերի համար
 
-Որպես պարզ օրինակ կդիտարկենք մի քանի տվյալների տիպ ունեցող մի լեզու։ Արտահայտությունների ամեն մի տիպի համար առանձին շարահյուսական կանոն նկարագրելու փոխարեն (ինչպես դա արված էր Algol-60 լեզվում), արտահայտությունները կսահմանենք ճիշտ մեկ անգամ, և նրանում մասնակցող կառուցվածքներին որպես ատրիբուտ կկցենք տվյանների `T` տիպը։ Օրինակ, `T` տիպի արտահայտությունը գրվում է `exp(T)`, այսինքն՝ `exp`-ը ունի `T` ատրիբուտը։ Ըստ այդմ՝ տիպերի համատեղելիության կանոնները դիտարկվում են որպես շարահյուսական կանոնների լրացումներ։ {??} Օրինակ, այն պահանջը, որ գումարման և հանման գործողությունների երկու օպերանդներն էլ պետք է նույն տիպն ունենան, և արդյունքն էլ պետք է ունենա օպերանդների տիպը, տրված են այդիպիսի լրացուցիչ ատրիբուտային կանոններով.
+Որպես պարզ օրինակ կդիտարկենք մի քանի տվյալների տիպ ունեցող մի լեզու։ Արտահայտությունների ամեն մի տիպի համար առանձին շարահյուսական կանոն նկարագրելու փոխարեն (ինչպես դա արված էր Algol-60 լեզվում), արտահայտությունները կսահմանենք ճիշտ մեկ անգամ, և նրանում մասնակցող կառուցվածքներին որպես ատրիբուտ կկցենք տվյանների `T` տիպը։ Օրինակ, `T` տիպի արտահայտությունը գրվում է `exp(T)`, այսինքն՝ `exp`-ը ունի `T` ատրիբուտը։ Ըստ այդմ՝ տիպերի համատեղելիության կանոնները դիտարկվում են որպես լրացումներ առանձին շարահյուսական կանոններին։ Օրինակ, այն պահանջը, որ գումարման և հանման գործողությունների երկու օպերանդներն էլ պետք է նույն տիպն ունենան, և արդյունքն էլ պետք է ունենա օպերանդների տիպը, տրված են այդիպիսի լրացուցիչ ատրիբուտային կանոններով.
 
 ````
 Syntax                       Attribute rule  Context condition
@@ -24,9 +24,9 @@ T1 = INTEGER  or  T1 = REAL
 T2 = INTEGER  or  T2 = REAL
 ````
 
-Ըստ էության, տիպերի համատեղելիության կանոնները նույնպես հաստատուն են այն իմաստով, որ դրանք կարող են ստուգվել առանց ծրագիրը կատարելու։ Այդ պատճառով էլ դրանց առանձնացումը մաքուր շարահյուսկան կանոններից դառնում է անիմաստ, սակայն ատրիբուտային կանոնների տեսքով դրանց միավորումը շարահյուսության հետ լրիվ արդարացված է։ Սակայն նկատենք, որ ատրիբուտային քերականությունները նոր տեսք {?} են ստանում, երբ ատրիբուտի հնարավոր արժեքները (այստեղ՝ տիպերը) և նրանց քանակները նախապես հայտնի չեն։ 
+Ըստ էության, տիպերի համատեղելիության կանոնները նույնպես հաստատուն են այն իմաստով, որ դրանք կարող են ստուգվել առանց ծրագիրը կատարելու։ Այդ պատճառով էլ շարահյուսկան կանոններից դրանց առանձնացումը դառնում է անիմաստ, սակայն ատրիբուտային կանոնների տեսքով դրանց միավորումը շարահյուսության հետ լրիվ արդարացված է։ Սակայն նկատենք, որ ատրիբուտային քերականությունները նոր իմաստ են ստանում, երբ ատրիբուտի հնարավոր արժեքները (այստեղ՝ տիպերը) և նրանց քանակները նախապես հայտնի չեն։ 
 
-Եթե շարահյուսական հավասարությունը կրկնության կառուցվածք է պարունակում, ապա, ատրիբուտային կանոնների տեսակետից, հարմար կլինի դա արտահայտել ռեկուրսիայի օգնությամբ։ {??} Ոչ պարտադիրության կառուցվածքի առկայության դեպքում ավելի լավ է երկու դեպքերն արտահայտել իրարից առանձին։ Դա ցույց է տրված հետևյալ օրինակում. 
+Եթե շարահյուսական հավասարությունը կրկնության կառուցվածք է պարունակում, ապա, ատրիբուտային կանոնների տեսակետից, հարմար կլինի դա արտահայտել ռեկուրսիայի օգնությամբ։ Ոչ պարտադիրության կառուցվածքի առկայության դեպքում ավելի լավ է երկու դեպքերն արտահայտել իրարից առանձին։ Դա ցույց է տրված հետևյալ օրինակում. 
 
 ````
 exp(T0) = term(T1) {"+" term(T2)}.   exp(T0) = ["-"] term(T1).
@@ -39,7 +39,7 @@ exp(T0) =  term(T1) |                  exp(T0) =  term(T1) |
            exp(T1) "+" term(T2).              "-" term(T1).
 ````
 
-Արտածման հետ համադրված տիպի կանոններն աշխատում են այն ժամանակ, երբ ճանաչվում է այդ արտածմանը համապատասխանող կառուցվածքը։ Այս համադրումը հեշտ է իրականացնել ռեկուրսիվ վայրէջքի եղանակով գրված անալիզատորներում. ատրիբուտային կանոններն իրականացնող հրամանները պարզապես ներդրվում են վերլուծությունն իրականացնող հրամանների մեջ, իսկ ատրիբուտները ձևակերպվում են որպես շարահյուսական կառուցվածքների (ոչ տերմինալային սիմվոլների) վերլուծության համար գրված պրոցեդուրաների պարամետրեր։ Արտահայտությունները ճանաչող պրոցեդուրան կարող է առաջին օրինակ ծառայել այդ ընդլայնումը ցուցադրելու համար, որտեղ սկզբնական վերլուծող պրոցեդուրան ծառայում է որպես կմաղք. {??}
+Արտածման հետ համադրված տիպի կանոնները գործում են այն ժամանակ, երբ ճանաչվում է այդ արտածմանը համապատասխանող կառուցվածքը։ Այս համադրումը հեշտ է իրականացնել ռեկուրսիվ վայրէջքի եղանակով գրված վերլուծիչներում. ատրիբուտային կանոններն իրականացնող հրամանները պարզապես ներդրվում են վերլուծությունն իրականացնող հրամանների մեջ, իսկ ատրիբուտները ձևակերպվում են որպես շարահյուսական կառուցվածքների (ոչ տերմինալային սիմվոլների) վերլուծության համար գրված պրոցեդուրաների պարամետրեր։ Արտահայտությունները ճանաչող պրոցեդուրան կարող է առաջին օրինակ ծառայել այդ ընդլայնումը ցուցադրելու համար, որտեղ սկզբնական վերլուծող պրոցեդուրան ծառայում է որպես կմաղք.
 
 ````
 PROCEDURE expression;
@@ -67,20 +67,22 @@ END expression
 
 ## Կանոններ հաշվարկների համար
 
-Որպես երկրորդ օրինակ դիտարկենք օպերանդներում միայն թվեր ունեցող արտահայտություններից կազմված լեզու, որի գործակիցները միայն թվեր են։ Դա մի փոքր քայլ է, որը շարահյուսական անալիզատորը  It is a short step to extend the parser into a program not only recognizing, but at the same time also evaluating expressions. We associate with each construct its value through an attribute called val. In analogy to the type compatibility rules in our previous example, we now must process evaluation rules while parsing. Thereby we have implicitly introduced the notion of semantics:
+Որպես երկրորդ օրինակ դիտարկենք օպերանդներում միայն թվեր ունեցող արտահայտություններից կազմված լեզու։ Դա մի փոքր քայլ է, որը շարահյուսական անալիզատորը պարզապես վերլուծող ձրագրից ընդլայնում է միաժամանակ նաև արտահայտությունները հաշվարկող ծրագրի։ `val` ատրիբուտով ամեն մի կառուցվածքին համապատասխանեցնում ենք նրա արժեքը։ Մեր նախորդ օրինակի տիպերի համատեղելիության կանոնների նմանությամբ այժմ պետք է վերլուծության ընթացքում գործարկենք հաշվարկման կանոնները։ Այսպիսով, արդեն ներմուծել ենք սեմանտիկայի գրառման եղանակը․
 
-Շարահյուսություն 			Ատրիբուտային կանոն (սեմանտիկա)
+````
+Շարահյուսություն 			             Ատրիբուտային կանոն (սեմանտիկա)
 
-exp(v0)	=	term(v1) |	v0 := v1
-		exp(v1) "+" term(v2) |	v0 := v1 + v2
-		exp(v1) "-" term(v2).	v0 := v1 - v2
-term(v0)	=	factor(v1) |	v0 := v1
-		term(v1) "*" factor(v2) |	v0 := v1 * v2
-		term(v1) "/" factor(v2).	v0 := v1 / v2
-factor(v0)	=	number(v1) |	v0 := v1
-		"(" exp(v1) ")".	v0 := v1
+exp(v0)	   = term(v1) |                  v0 := v1
+             exp(v1) "+" term(v2) |	     v0 := v1 + v2
+             exp(v1) "-" term(v2).       v0 := v1 - v2
+term(v0)   = factor(v1) |	             v0 := v1
+             term(v1) "*" factor(v2) |	 v0 := v1 * v2
+             term(v1) "/" factor(v2).	 v0 := v1 / v2
+factor(v0) = number(v1) |                v0 := v1
+             "(" exp(v1) ")".            v0 := v1
+````
 
-Այստեղ ատրիբուտը ճանաչված կառուցվածքի հաշվարկված, թվային արժեքն է։ The necessary extension of the corresponding parsing procedure leads to the following procedure for expressions:
+Այստեղ ատրիբուտը ճանաչված կառուցվածքի հաշվարկված, թվային արժեքն է։ Համապատասխան վերլուծության պրոցեդուրայի անհրաժեշտ ընդլայնումով ստացվում է արտահայտությունների հաշվարկման հետևյալ պրոցեդուրան․
 
 ````
 PROCEDURE expression(VAR val0: INTEGER);
@@ -97,62 +99,77 @@ END expression
 
 ## Կանոններ թարգմանության համար
 
-A third example of the application of attributed grammars exhibits the basic structure of a compiler. The additional rules associated with a production here do not govern attributes of symbols, but specify the output (code) issued when the production is applied in the parsing process. The generation of output may be considered as a side-effect of parsing. Typically, the output is a sequence of instructions. In this example, the instructions are replaced by abstract symbols, and their output is specified by the operator put.
+Ատրիբուտներով քերականությունների կիրառության երրորդ օրինակը բացահայտում է կոմպիլյատորի հիմնական գործունեություննը։ Արտածումների հետ համադրված լրացուցիչ կանոններն այստեղ ոչ թե ղեկավարում govern {?} են սիմվոլների ատրիբուտները, այլ ձևավորում են արտածվող կոդ, որը գործարկվում է վերլուծության ընթացքում արտածումը կիրառելիս։ Արտածվող տեքստի ձևավորումը կարող է դիտարկվել որպես վերլուծության կողմնակի էֆեկտ։ Սովորաբար այդ տեքստը հրամանների հաջորդականություն է։ Այս օրինակում հրամանները փոխարինված են վերացական սիմվոլներով, իսկ դրանց արտածումը կատարվում է `put` հրամանով։
 
-Syntax		Output rule (semantics)
+````
+Syntax                      Output rule (semantics)
 
-exp	=	term	-
-		exp "+" term	put("+")
-		exp "-" term.	put("-")
-term	=	factor	-
-		term "*" factor	put("*")
-		term "/" factor.	put("/")
-factor	=	number	put(number)
-		"(" exp ")".	-
+exp    = term               -
+       | exp "+" term       put("+")
+       | exp "-" term.      put("-")
+term   = factor	            -
+       | term "*" factor    put("*")
+       | term "/" factor.   put("/")
+factor = number             put(number)
+       | "(" exp ")".       -
+````
 
-As can easily be verified, the sequence of output symbols corresponds to the parsed expression in postfix notation. The parser has been extended into a translator.
+Հեշտությամբ կարելի է ստուգել, որ վերլուծվող արտահայտության համար արտածված սիմվոլների հաջորդականությունը համապատասխանում է նրա ետածանցային (postfix) գրառմանը։ Այս դեպքում վերլուծիչը ընդլայնվել է որպես թարգմանիչ։
 
-Infix notation	Postfix notation
-2 + 3	2 3 +
-2 * 3 + 4	2 3 * 4 +
-2 + 3 * 4	2 3 4 * +
-(5 - 4) * (3 + 2)	5 4 - 3 2 + *
+````
+Infix notation      Postfix notation
+2 + 3               2 3 +
+2 * 3 + 4           2 3 * 4 +
+2 + 3 * 4           2 3 4 * +
+(5 - 4) * (3 + 2)   5 4 - 3 2 + *
+````
 
-The procedure parsing and translating expressions is as follows:
+Ստորև արտահայտությունները վերլուծող և թարգմանող պրոցեդուրան է։
 
+````oberon
 PROCEDURE expression;
-	VAR op: CHAR;
+  VAR op: CHAR;
 BEGIN term;
-	WHILE (sym = "+") OR (sym = "-") DO
-		op := sym; GetSym; term; put(op)
-	END
+  WHILE (sym = "+") OR (sym = "-") DO
+    op := sym; GetSym; term; put(op)
+  END
 END expression
+````
 
-When using a table-driven parser, the tables expressing the syntax may easily be extended also to represent the attribute rules. If the evaluation and translation rules are also contained in associated tables, one is tempted to speak about a formal definition of the language. The general, table-driven parser grows into a general, table-driven compiler. This, however, has so far remained a utopia, but the idea goes back to the 1960s. It is represented schematically by Figure 5.1.
+Աղյուղակով ղեկավարվող վերլուծիչ օգտագործելիս շարահյուսությունը ներկայացնող աղյուսակները հեշտությամբ կարող են ընդլայնվել ատրիբուտային կանոնները ներկայացնելու համար։ Եթե այդ աղյուսակները պարունակում են նաև հաշվարկման և թարգմանության կանոնները, ապա գայթակղություն է առաջանում խոսելու լեզվի ֆորմալ սահմանման մասին։ Աղյուսակով ղեկավարվող ունիվերսալ վերլուծիչը վերաճում է աղյուսակով֊ղեկավարվող ուիվերսալ կոմպիլյատորի։ Չնայած, որ այս գաղափարը ծագել է 1960֊ականներին, սակայն այն դեռ համարվում է ուտոպիա։ Նկար 5.1֊ում ունիվերսալ կոմպիլյատորի ուրվապատկերն է։
 
-Figure 5.1. Schema of a general, parametrized compiler.
+![Նկար 5.1։ Ունիվերսալ, պարամետրիզացված կոմպիլյատորի սխեման։](figure-5-1.png)
+Նկար 5.1։ Ունիվերսալ, պարամետրիզացված կոմպիլյատորի սխեման։
 
-Ultimately, the basic idea behind every language is that it should serve as a means for communication. This means that partners must use and understand the same language. Promoting the ease by which a language can be modified and extended may therefore be rather counterproductive. Nevertheless, it has become customary to build compilers using table-driven parsers, and to derive these tables from the syntax automatically with the help of tools. The semantics are expressed by procedures whose calls are also integrated automatically into the parser. Compilers thereby not only become bulkier and less efficient than is warranted, but also much less transparent. The latter property remains one of our principal concerns, and therefore we shall not pursue this course any further.
+Վերջին հաշվով, յուրաքանչյուր լեզվի հիմքում ընկած է շփման միջոց լինելու գաղափարը։ Սա նշանակում է, որ զրուցակիցները պետք է օգտագործեն և հասկանան միևնույն լեզուն։ Այս պատճառով էլ, լեզուն հեշտությամբ պարզեցնելու և ընդլայնելու գաղափարի զարգացումը {?} կարող է բացասական ազդեցություն թողնել։ Այնուամենայնիվ, հիմա սովորական է դարձել կոմպիլյատորները կառուցելիս օգտագործել աղյուսակով ղեկավարվող վերլուծիչներ, իսկ այդ աղյուսակները շարահյուսությունից ստանալ հատուկ գործիքների օգնությամբ։ Սեմանտիկան արտահայտվում է պրոցեդուրաներով, որոնց կանչերը նույնպես ավտոմատ ինտեգրվում են վերլուծիչում։ Դրանով իսկ կոմպիլյատորները դառնում են ոչ միայն շատ մեծ ու նվազ արդյունավետ, բայց նաև դառնում են պակաս թափանցիկ։ Այս վերջին պարագան մնում է մեր սկզբունքային հետաքրքրություններից մեկը, և այդ պատճառով էլ այսուհետ չենք հետևի այդ ուղղությանը։ {?}
 
 
-5.4. Վարժություն
+## 5.4. Վարժություն
 
-5.1. Extend the program for syntactic analysis of EBNF texts in such a way that it generates (1) a list of terminal symbols, (2) a list of nonterminal symbols, and (3) for each nonterminal symbol the sets of its start and follow symbols. Based on these sets, the program is then to determine whether the given syntax can be parsed top-down with a lookahead of a single symbol. If this is not so, the program displays the conflicting productions in a suitable way.
-Hint: Use Warshall's algorithm (R. W. Floyd, Algorithm 96, Comm. ACM, June 1962).
+__5.1.__ Ընդլայնել EBNF տեքստի շարահյուսական վերլուծության ծրագիրն այնպես, որ այն գեներացնի (1) տերմինալային սիմվոլների ցուցակը, (2) ոչ֊տերմինալային սիմվոլների ցուցակը, և (3) ամեն մի ոչ֊տերմինալային սիմվոլի համար նրա _first_ և _follow_ բազմությունները։ Այնուհետև, այդ բազմություններն օգտագործելով, ծրագիրը պետք է պարզի, թե արդյոք տրված շարահյուսությունը վերլուծելի՞ է վերից֊վար ողանակով՝ մեկ սիմվոլ առաջ նայելով։ {?} Եթե վերլուծելի չէ, ապա ծրագիրը պետք է հարմար տեսքով դուրս բերի կոնֆլիկտային արտածումները։
+
+Հուշում։ Օգտագործեք Ուորշելի (Warshall) ալգորիթմը (R. W. Floyd, Algorithm 96, Comm. ACM, June 1962)։
+
+````oberon
 TYPE matrix = ARRAY [1..n],[1..n] OF BOOLEAN;
+
 PROCEDURE ancestor(VAR m: matrix; n: INTEGER);
-(* Initially m[i,j] is TRUE, if individual i is a parent of individual j.
-	At completion, m[i,j] is TRUE, if i is an ancestor of j *)
-	VAR i, j, k: INTEGER;
+(* Սկզբում m[i,j]֊ին վերագրվում է TRUE, եթե i֊ն j֊ի ծնողն է։
+   Վերջում m[i,j]֊ն TRUE է, եթե i֊ն նախորդում է j֊ին *)
+  VAR i, j, k: INTEGER;
 BEGIN
-	FOR i := 1 TO n DO
-		FOR j := 1 TO n DO
-			IF m[j, i] THEN
-				FOR k := 1 TO n DO
-					IF m[i, k] THEN m[j, k] := TRUE END
-				END
-			END
-		END
-	END
+  FOR i := 1 TO n DO
+    FOR j := 1 TO n DO
+      IF m[j, i] THEN
+        FOR k := 1 TO n DO
+          IF m[i, k] THEN m[j, k] := TRUE END
+        END
+      END
+    END
+  END
 END ancestor
-It may be assumed that the numbers of terminal and nonterminal symbols of the analysed languages do not exceed a given limit (for example, 32). 
+````
+
+Կարելի է ընդունել, որ վերլուծվող լեզվի տերմինալային և ոչ֊տերմինալային սիմվոլների քանակը չի գերազանցում տրված առավելագույն թիվը (օրինակ, 32)։
+
+
