@@ -65,22 +65,45 @@ END OSS.
 
  __S__                   | __First(S)__
 :-------------------:|:-----------:
-selector             | . [
+selector             | . [ *
 factor               | ( ~ integer ident
 term                 | ( ~ integer ident
 SimpleExpression     | + - ( ~ integer ident
 expression           | + - ( ~ integer ident
 assignment           | ident
 ProcedureCall        | ident
-statement            | ident IF WHILE REPEAT
-StatementSequence    | ident IF WHILE REPEAT
-FieldList            | ident
+statement            | ident IF WHILE REPEAT *
+StatementSequence    | ident IF WHILE REPEAT *
+FieldList            | ident *
 type                 | ident ARRAY RECORD
 FPSection            | ident VAR
 FormalParameters     | (
 ProcedureHeading     | PROCEDURE
 ProcedureBody        | END CONST TYPE VAR PROCEDURE BEGIN
 ProcedureDeclaration | PROCEDURE
-declarations         | CONST TYPE VAR PROCEDURE
+declarations         | CONST TYPE VAR PROCEDURE *
 module               | MODULE
+
+
+__S__  | __Follow(S)__
+-------------|------------------
+selector | * DIV MOD & + - OR = # < <= > >= , ) ] := OF THEN DO ; END ELSE ELSIF UNTIL
+factor   | * DIV MOD & + - OR = # < <= > >= , ) ] OF THEN DO ; END ELSE ELSIF UNTIL
+term     | + - OR = # < <= > >= , ) ] OF THEN DO ; END ELSE ELSIF UNTIL
+SimpleExpression | = # < <= > >= , ) ] OF THEN DO ; END ELSE ELSIF UNTIL
+expression | , ) ] OF THEN DO ; END ELSE ELSIF UNTIL
+assignment | ; END ELSE ELSIF UNTIL
+ProcedureCall | ; END ELSE ELSIF UNTIL
+statement | ; END ELSE ELSIF UNTIL
+StatememtSequence | END ELSE ELSIF UNTIL
+FielsList | ; END
+type | ) ;
+FPSection | ) ;
+FormalParameters | ;
+ProcedureHeading | ;
+ProcedureBody | ;
+ProcedureDeclaration | ;
+declarations | END BEGIN
+
+Դետերմինացվածության կանոնների հետագա ստուգումները ցույց են տալիս, որ Oberon-0֊ի այս շարահյուսությունը իսկապես կարող է վերլուծվել ռեկուրսիվ վայրէջքի եղանակով՝ առաջ նայելով մեկ սիմվոլ։ Ամեն մի ոչ֊տերմինալային սիմվոլին համապատասխան նախատեսված է մի պրոցեդուրա։ Բայց, մինչև պրոցեդուրաների սահմանումը, օգտակար է ուսումնասիրել, թե ինչպես են դրանք կախված միմյանցից։ Այս նպատակի համար պատրաստենք կախվածության գրաֆը (նկ․ 7.1)։ Յուրաքանչյուր պրոցեդուրա ներկայացված է որպես հանգույց, և մեկական կող է տարված բոլոր այն հանգույցներին, որին կպված է տվյալ պրոցեդուրան, այսինքն՝ ունի ուղղակի կամ անուղղակի կանչ։ {??} Նկատենք, որ ոչ֊տերմինալային սիմվոլներից որոշներն այս գրաֆում ներկայացված չեն, քանի որ դրանք ակնհայտորեն ներառված են այլ սիմվոլներում։ {??} Օրինակ, `ArrayType` և `RecordType` սիմվոլները կախված են միայն `type` սիմվոլից, և այդ պատճառով էլ բացահայտ պատկերված չեն։ Բացի այդ հիշում ենք, որ `ident` և `integer` սիմվոլները հանդիսանում են տերմինալային սիմվոլներ, որովհետև այդպես են մեկնաբանված բառային վերլուծիչի կողմից։
 
