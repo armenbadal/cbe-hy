@@ -53,8 +53,34 @@ END OSS.
 1. Բացատներն ու տողի վերջի նիշերն անտեսվում են։
 2. Ճանաչվում են ծառայողական բառերը, ինչպիսիք են `BEGIN`֊ը և `END`֊ը։
 3. Տառերի ու թվերի հաջորդականությունները՝ տառով սկսվող, որոնք ծառայողական բառեր չեն, ճանաչվում են որպես իդենտիֆիկատորներ։ `sym` պարամետրին տրվում է `ident` արժեքը, իսկ կարդացած նիշերի հաջորդականությունը վերագրվում է `id` գլոբալ փոփոխականին։
-4. Թվանշանների հաջորդականությունները ճանաչվում են որպես թվեր։ The parameter sym is given the value number, and the number itself is assigned to the global variable val.
-5. Combinations of special characters, such as := and <=, are recognized as a symbol.
-6. Comments, represented by sequences of arbitrary characters beginning with (* and ending with *) are skipped.
-7. The symbol null is returned, if the scanner reads an illegal character (such as $ or %). The symbol eof is returned if the end of the text is reached. Neither of these symbols occur in a well-formed program text.
+4. Թվանշանների հաջորդականությունները ճանաչվում են որպես թվեր։ `sym` պարամետրին տրվում է `number` արժեքը, իսկ կարդացած թիվը վերագրվում է `val` գլոբալ փոփոխականին։
+5. Հատուկ նիշերի միակցությունները, ինչպիսիք են, օրինակ, `:=` և `<=`, ճանաչվում են որպես սիմվոլներ։
+6. Մեկնաբանությունները, որոնք կամայական միշեր են՝ սկսվող `(*` և ավարտվող `*)` սիմվոլներով, անտեսվում են։
+7. Եթե կարդացվել է անթույլատրելի նիշ (ինչպիսիք են, օրինակ, `$` և `%`), ապա վերադարձվում է `null` սիմվոլը։ Եթե կարդալու պրոցեսը հասել է տեքստի վերջին, ապա վերադարձվում է `eof` սիմվոլը։ Այս սիմվոլներից և ոչ մեկը չի հանդիպում ծրագրերի ճիշտ գրված տեքստերում։
+
+
+## Շարահյուսական վերլուծություն
+
+Շարահյուսական վերլուծիչի կառուցվածքը ճշտորեն հետևում է 3֊րդ և 4֊րդ գլուխներում բացատրված կանոններին։ Սակայն, մինչև նր կառուցմանն անցնելը, անհրաժեշտ է ստուգել համապատասխանո՞ւմ է արդյոք շարահյուսությունն այն սահմանափակումներին, որոնք երաշխավորում են մեկ սիմվոլ առաջ նայելով դետերմինացված վերլուծությունը։ Այս նպատակով նախ կառուցենք `first` և `follow` բազմությունները։ Դրանք ներկայացված են հետևյալ աղյուսակներում։
+
+ __S__                   | __First(S)__
+:-------------------:|:-----------:
+selector             | . [
+factor               | ( ~ integer ident
+term                 | ( ~ integer ident
+SimpleExpression     | + - ( ~ integer ident
+expression           | + - ( ~ integer ident
+assignment           | ident
+ProcedureCall        | ident
+statement            | ident IF WHILE REPEAT
+StatementSequence    | ident IF WHILE REPEAT
+FieldList            | ident
+type                 | ident ARRAY RECORD
+FPSection            | ident VAR
+FormalParameters     | (
+ProcedureHeading     | PROCEDURE
+ProcedureBody        | END CONST TYPE VAR PROCEDURE BEGIN
+ProcedureDeclaration | PROCEDURE
+declarations         | CONST TYPE VAR PROCEDURE
+module               | MODULE
 
