@@ -1,77 +1,115 @@
-# Consideration of Context Specified by Declarations
+
+# Հայտարարություններով որոշվող կոնտեքստ {?}
 
 ## Հայտարարություններ
 
-Although programming languages are based on context-free languages in the sense of Chomsky, they are by no means context free in the ordinary sense of the term. The context sensitivity is manifest in the fact that every identifier in a program must be declared. Thereby it is associated with an object of the computing process which carries certain permanent properties. For example, an identifier is associated with a variable, and this variable has a specific data type as specified in the identifier's declaration. An identifier occurring in a statement refers to the object specified in its declaration, and this declaration lies outside the statement. We say that the declaration lies in the context of the statement.
+Թեև ծրագրավորման լեզուներն ունեն Չոմսկու իմաստով կոնտեքսից ազատ քերականություններ, բայց դրանք կոնտեքստից ազատ չեն այդ երևույթի սովորական իմաստով։ Կոնտեքստից կախվածությունն արտահայտվում է այն փաստով, որ ծրագրի բոլոր իդենտիֆիկատորները պետք է հայտարարված լինեն։ Դրանով այն համապատասխանեցված է հաշվարկման պրոցեսի օբյեկտի հետ, որն օժտված է որոշակի չփոփոխվող հատկանիշներով։ Օրինակ, իդենտիֆիկատորը համապատասխանեցված է փոփոխականի, իսկ այդ փոփոխականն էլ ունի իդենտֆիկատորի հայտարաման ժամանակ որոշված տվյալների տիպը։ {??} Հրամանի մեջ հանդիպող իդենտիֆկատորը հղվում է իր հայտարարման ժամանակ տրված օբյեկտին, և այդ հայտարարությունն էլ գտնվում է հրամանի սահմաններից դուրս։ Ասում ենք, որ հայտարարությունը գտնվում է հրամանի կոնտեքստում։ {??}
 
-Consideration of context evidently lies beyond the capability of context-free parsing. In spite of this, it is easily handled. The context is represented by a data structure which contains an entry for every declared identifier. This entry associates the identifier with the denoted object and its properties. The data structure is known by the name symbol table. This term dates back to the times of assemblers, when identifiers were called symbols. Also, the structure is typically more complex than a simple array.
+Ակնհայտ է, որ կոնտեքստի հետ աշխատանքը կոնտեքստից ազատ շարահյուսական վերլուծության հնարավորություններից դուրս է։ Չնայած դրան, այն հեշտությամբ մշակվում է։ Կոնտեքստը ներկայացված է մի տվյալների կառուցվածքով, որը գրառում է պարունակում ամեն մի հայտարարված իդենտիֆիկատորի համար։ Այդ գրառումը իդենտիֆիկատորին համապատասխանեցնում է որոշակի օբյեկտ և նրա հատկությունները։ {??} Այդ տվյալների կառուցվածքը հայտնի է _սիմվոլների աղյուսակ_ անունով։ Այս եզրը հայտնի է ասեմբլերների ժամանակներից, երբ իդենտիֆիկատորները կոչվում էին սիմվոլներ։ Ի դեպ, սիմվոլների աղյուսակն ավելի բարդ կառուցվածք ունի, քան սովորական զանգվածը։
 
-The parser will now be extended in such a way that, when parsing a declaration, the symbol table is suitably augmented. An entry is inserted for every declared identifier. To summarize:
+Այժմ շարահյուսական անալիզատորը պետք է ընդլայնվի այնպես, որ հայտարարությունների վերլուծության ժամանակ սիմվոլների աղյուսակը լրացվի համապատասխան տվյալներով։ Ամեն մի հայտարարված իդենտիֆիկատորի համար ավելացվում է նոր գրառում։ Այսպիսով․
 
--	Every declaration results in a new symbol table entry.
--	Every occurrence of an identifier in a statement requires a search of the symbol table in order to determine the attributes (properties) of the object denoted by the identifier.
+* Ամեն մի հայտարարություն ստեղծում է սիմվոլների աղյուսակի նոր դրառում։
+* Հրամանի մեջ իդենտիֆիկատորի ամեն մի օգտագործման դեպքում պահանջվում է որոնում կատարել սիմվոլների աղյուսակում, իդենտիֆիկատորի հետ կապված օբյեկտի ատրիբուտները (հատկությունները) ստանալու համար։
 
-A typical attribute is the object's class. It indicates whether the identifier denotes a constant, a variable, a type or a procedure. A further attribute in all languages with data types is the object's type.
+Տիպիկ ատրիբուտ է օբյեկտի _դասը_։ Այն որոշում է արդյո՞ք իդենտիֆիկատորով որոշվում է հաստատուն, փոփոխական, տիպ կամ պրոցեդուրա։ Բոլոր տիպիզացված ծրագրավորման լեզուներում և մի ատրիբուտ է օբյեկտի _տիպը_։
 
-The simplest form of data structure for representing a set of items is the list. Its major disadvantage is a relatively slow search process, because it has to be traversed from its root to the desired element. For the sake of simplicity - data structures are not the topic of this text - we declare the following data types representing linear lists:
+Տարրերի բազմությունը ներկայացնելու պարզագույն տվյալների կառուցվածք է ցուցակը։ Դրա հիմնական թերությունը համեմատաբար դանդաղ որոնման պրոցեսն է, քանի որ պետք է անցնել նրա սկզբից մինչև որոնելի տարրը։ Շարադրանքը չբարդացնելու համար (տվյալների կառուցվածքներն այս գրքի նյութը չեն) հայտարարում ենք գծային ցուցակները ներկայացնող հետևյալ տիպերը։
 
-    Object = POINTER TO ObjDesc;
-    ObjDesc = RECORD	
-	    name: Ident;
-	    class: INTEGER;	
-	    type: Type;
-	    next: Object;
-	    val: LONGINT
-    END
+````oberon
+Object = POINTER TO ObjDesc;
+ObjDesc = RECORD	
+  name: Ident;
+  class: INTEGER;	
+  type: Type;
+  next: Object;
+  val: LONGINT
+END
+````
 
-The following declarations are, for example, represented by the list shown in Figure 8.1.
+Հետևյալ հայտարարություններն, օրինակ, ցուցակներոց արտահայտվում են նկ․ 8.1֊ում պատկերված տեսքով․
 
-    CONST N = 10;
-    TYPE T = ARRAY N OF INTEGER;
-    VAR x, y: T
+````oberon
+CONST N = 10;
+TYPE T = ARRAY N OF INTEGER;
+VAR x, y: T
+````
 
-Figure 8.1. Symbol table representing objects with names and attributes.
-For the generation of new entries we introduce the procedure NewObj with the explicit parameter class, the implied parameter id and the result obj. The procedure checks whether the new identifier (id) is already present in the list. This would signify a multiple definition and constitute a programming error. The new entry is appended at the end of the list, so that the list mirrors the order of the declarations in the source text. The end of the list is marked by a guard element (sentinel) to which the new identifier is assigned before the list traversal starts. This measure simplifies the termination condition of the while-statement.
+![Նկար 8.1։ Անուններով և ատրիբուտներով օբյեկտների սիմվոլների աղյուսակ](figure-8-1.png)
+
+Նկար 8.1։ Անուններով և ատրիբուտներով օբյեկտների սիմվոլների աղյուսակ։
+
+Նոր գրառումներ ստեղծելու համար ներմուծենք `NewObj` պրոցեդուրան՝ `class` բացահայտ պարամետրով, `id` ենթադրվող պարամետրով և `obj` արդյունքով։ {??} Պրոցեդուրան ստուգում է արդյո՞ք նոր իդենտիֆիկատորը (`id`) արդեն ցուցակում է։ Դա ցույց է տալիս իդենտիֆիկատորի բազմակի հայտարարում, որն էլ բերում է ծրագրային սխալի։ {??} Այդ նոր գրառումն ավելացվում է ցուցակի վերջում այնպես, որ ցուցակն արտացոլում է ծրագրի տեքստում հայտարարությունների հաջորդականությունը։ Ցուցակի վերջը որոշվում է _հսկող_ (guard) տարրով, որին, մինչև որոնման սկսելը, վերագրվում է նոր իդենտիֆիկատորը։ Այս հնարքը պարզեցնում է `WHILE` ցիկլի ավարտի պայմանը։
+
+````oberon
 PROCEDURE NewObj(VAR obj: Object; class: INTEGER);
-	VAR new, x: Object;
+  VAR new, x: Object;
 BEGIN x := origin; guard.name := id;
-	WHILE x.next.name # id DO x := x.next END ;
-	IF x.next = guard THEN
-		NEW(new); new.name := id; new.class := class; new.next := guard;
-		x.next := new; obj := new
-	ELSE obj := x.next; Mark("multiple declaration")
-	END
+  WHILE x.next.name # id DO x := x.next END ;
+  IF x.next = guard THEN
+    NEW(new); new.name := id; new.class := class; new.next := guard;
+    x.next := new; obj := new
+  ELSE obj := x.next; Mark("multiple declaration")
+  END
 END NewObj
-In order to speed up the search process, the list is often replaced by a tree structure. Its advantage becomes noticeable only with a fairly large number of entries. For structured languages with local scopes, that is, ranges of visibility of identifiers, the symbol table must be structured accordingly, and the number of entries in each scope becomes relatively small. Experience shows that as a result the tree structure yields no substantial benefit over the list, although it requires a more complicated search process and the presence of three successor pointers per entry instead of one. Note that the linear ordering of entries must also be recorded, because it is significant in the case of procedure parameters.
-8.2.  Entries for data types
+````
+
+Որոնման արագությունն ավելացնելու համար ցուցակը սովորաբար փոխարինվում է ծառաձև կառուցվածքով։ Վերջինիս առավելությունը նկատելի է դառնում միայն գրառումների բավականաչափ մեք քանակի դեպքում։ Լոկալ տեսանելիության տիրույթներ, այն է՝ իդնենտիֆիկատորների ranges of visibility, ունեցող ստրուկտուրավորված լեզուներում սիմվոլների աղյուսակը նուկյնպես պետք է համապատասխան ձևով ստրուկտուրավորված լինի, և ամեն մի տիրույթի գրառումների քանակը համեմատաբար փոքր է։ {??} Փորձը ցույց է տալիս, որ արդյունքում ծառաձև կառուցվածքը զգալի առավելություն չի տալիս ցուցակի նկատմամբ, թեև պահանջում է ավելի բարդ որոնման գործողություն և հաջորդ գրառումների վրա ցույց տվող երեք ցուցիչներ՝ մեկի փոխարեն։ {??} Հիշենք նաև, որ գրառումների գծային կարգը նույնպես պետք է պահպանել, քանի որ դա կարևոր է պրողեդուրայի պարամետրերի համար։
+
+
+## Գրառումներ տվյալների տիպերի համար
+
 In languages featuring data types, their consistency checking is one of the most important tasks of a compiler. The checks are based on the type attribute recorded in every symbol table entry. Since data types themselves can be declared, a pointer to the respective type entry appears to be the obvious solution. However, types may also be specified anonymously, as exemplified by the following declaration:
+
+````oberon
 VAR a: ARRAY 10 OF INTEGER
+````
+
 The type of variable a has no name. An easy solution to the problem is to introduce a proper data type in the compiler to represent types as such. Named types then are represented in the symbol table by an entry of type Object, which in turn refers to an element of type Type.
+
+````oberon
 Type = POINTER TO TypDesc;
 TypDesc = RECORD
-	form, len: INTEGER;
-	fields: Object;
-	base: Type
+  form, len: INTEGER;
+  fields: Object;
+  base: Type
 END
+````
+
 The attribute form differentiates between elementary types (INTEGER, BOOLEAN) and structured types (arrays, records). Further attributes are added according to the individual forms. Characteristic for arrays are their length (number of elements) and the element type (base). For records, a list representing the fields must be provided. Its elements are of the class Field. As an example, Figure 8.2. shows the symbol table resulting from the following declarations:
+
+````oberon
 TYPE R = RECORD f, g: INTEGER END ;
 VAR x: INTEGER;
-	a: ARRAY 10 OF INTEGER;
-	r, s: R;
+  a: ARRAY 10 OF INTEGER;
+  r, s: R;
+````
+
 Figure 8.2. Symbol table representing declared objects.
+
 As far as programming methodology is concerned, it would be preferable to introduce an extended data type for each class of objects, using a base type with the fields id, type and next only. We refrain from doing so, not least because all such types would be declared within the same module, and because the use of a numeric discrimation value (class) instead of individual types avoids the need for numerous, redundant type guards and thereby increases efficiency. After all, we do not wish to promote an undue proliferation of data types.
-8.3.  Data representation at run-time
+
+
+## Տվյալների ներկայացումը կատարման ժամանակ
+
 So far, all aspects of the target computer and its architecture, that is, of the computer for which code is to be generated, have been ignored, because our sole task was to recognize source text and to check its compliance with the syntax. However, as soon as the parser is extended into a compiler, knowledge about the target computer becomes mandatory.
+
 First, we must determine the format in which data are to be represented at run-time in the store. The choice inherently depends on the target architecture, although this fact is less apparent because of the similarity of virtually all computers in this respect. Here, we refer to the generally accepted form of the store as a sequence of individually addressable byte cells, that is, of byte-oriented memories. Consecutively declared variables are then allocated with monotonically increasing or decreasing addresses. This is called sequential allocation.
+
 Every computer features certain elementary data types together with corresponding instructions, such as integer addition and floating-point addition. These types are invariably scalar types, and they occupy a small number of consecutive memory locations (bytes). An example of an architecture with a fairly rich set of types is National Semiconductor's family of NS32000 processors:
+
 Data type	Number of bytes	Data type	Number of bytes
 INTEGER	2	LONGREAL	8
 LONGINT	4	CHAR	1
 SHORTINT	1	BOOLEAN	1
 REAL	4	SET	4
+
 From the foregoing we conclude that every type has a size, and every variable has an address.
+
 These attributes, type.size and obj.adr, are determined when the compiler processes declarations. The sizes of the elementary types are given by the machine architecture, and corresponding entries are generated when the compiler is loaded and initialized. For structured, declared types, their size has to be computed.
+
 The size of an array is its element size multiplied by the number of its elements. The address of an element is the sum of the array's address and the element's index multiplied by the element size. Let the following general declarations be given:
+
 TYPE T = ARRAY n OF T0
 VAR a: T
 Then type size and element address are obtained by the following equations:
